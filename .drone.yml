@@ -1,0 +1,30 @@
+kind: pipeline
+name: alfred-jetbrains
+
+trigger:
+  branch:
+    - master
+  event:
+    - tag
+
+steps:
+  - name: build
+    image: abogatikov/golang:1.12.5-alpine3.9
+    commands:
+      - cd /drone/src/
+      - echo Commit tag $DRONE_TAG
+      - make build-workflow VERSION=$DRONE_TAG
+    when:
+      event: tag
+
+  - name: publish
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: GITHUB_API_TOKEN
+      files:
+        - /drone/src/build/JetBrains.alfredworkflow
+      checksum:
+        - sha512
+    when:
+      event: tag
