@@ -1,10 +1,6 @@
 kind: pipeline
 name: alfred-jetbrains
 
-trigger:
-  branch:
-    - master
-
 steps:
   - name: build
     image: abogatikov/golang:1.12.6-alpine3.9
