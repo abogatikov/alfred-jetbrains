@@ -4,8 +4,6 @@ name: alfred-jetbrains
 trigger:
   branch:
     - master
-  event:
-    - tag
 
 steps:
   - name: build
