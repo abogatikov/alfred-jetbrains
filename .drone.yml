@@ -9,7 +9,7 @@ trigger:
 
 steps:
   - name: build
-    image: abogatikov/golang:1.12.5-alpine3.9
+    image: abogatikov/golang:1.12.6-alpine3.9
     commands:
       - cd /drone/src/
       - echo Commit tag $DRONE_TAG
