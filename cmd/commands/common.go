@@ -17,7 +17,7 @@ import (
 
 const (
 	iconSubPath         = "/Contents/Resources/icon.icns"
-	cRecentProjectsPath = `/config/options/recentProjectDirectories.xml`
+	cRecentProjectsPath = `/config/options/recentProjects.xml`
 )
 
 var (

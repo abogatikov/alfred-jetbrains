@@ -21,6 +21,7 @@ type item struct {
 func recentFolderItems() []*item {
 	names := make([]*item, 0)
 	app, err := getApplication()
+
 	if err != nil {
 		log.Println(err)
 		return names
@@ -36,6 +37,7 @@ func recentFolderItems() []*item {
 					FolderName: appFolder(cApplication),
 				})
 			}
+
 			return names
 		}
 	}
@@ -46,6 +48,7 @@ func recentFolderItems() []*item {
 func appItems() []*item {
 	names := make([]*item, 0)
 	folders, err := ioutil.ReadDir(cToolboxFolder)
+
 	if err != nil {
 		log.Println(err)
 		return names
@@ -59,6 +62,7 @@ func appItems() []*item {
 			FolderName: folder.Name(),
 		})
 	}
+
 	return names
 }
 
@@ -66,6 +70,7 @@ func appArgString(appFolder string) string {
 	appName := appName(appFolder)
 	appNameLower := strings.ToLower(appName)
 	appNameLowerReplacePlusesBuDashes := strings.ReplaceAll(appNameLower, " + ", "_")
+
 	return strings.ReplaceAll(appNameLowerReplacePlusesBuDashes, " ", "_")
 }
 
@@ -83,9 +88,11 @@ func appName(appFolder string) string {
 
 func folderName(l string) string {
 	split := strings.Split(l, "/")
+	// nolint:gomnd // this is a magic number
 	if len(split) > 1 {
 		return split[len(split)-1]
 	}
+
 	return l
 }
 

@@ -19,7 +19,8 @@ type Opts struct {
 func main() {
 	var opts Opts
 	parser := flags.NewParser(&opts, flags.Default)
+
 	if _, err := parser.ParseArgs(os.Args[1:]); err != nil {
-		os.Exit(1)
+		os.Exit(1) // nolint:gomnd // this is an exit code
 	}
 }

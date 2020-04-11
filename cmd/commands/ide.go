@@ -20,16 +20,19 @@ func (so *IDE) Execute([]string) error {
 
 func (so *IDE) run() {
 	log.Printf("ide")
+
 	defer func() {
 		if so.Filter != "" {
 			log.Printf("filter output: %s", so.Filter)
 			wf.Filter(so.Filter)
 		}
+
 		log.Printf("return ide output")
 		wf.SendFeedback()
 	}()
 
 	log.Printf("get applications")
+
 	for _, name := range appItems() {
 		log.Printf("add item: %s", name.FolderName)
 		wf.NewItem(name.Name).

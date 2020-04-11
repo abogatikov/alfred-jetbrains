@@ -38,11 +38,14 @@ func getApplication() (*application, error) {
 	}
 
 	var app application
+
 	decoder := xml.NewDecoder(bytes.NewReader(b))
 	err = decoder.Decode(&app)
+
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
+
 	return &app, nil
 }

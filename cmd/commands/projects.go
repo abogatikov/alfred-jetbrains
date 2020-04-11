@@ -20,16 +20,20 @@ func (so *Projects) Execute([]string) error {
 
 func (so *Projects) run() {
 	log.Printf("projects")
+
 	defer func() {
 		log.Printf("filter output: %s", so.Filter)
+
 		if so.Filter != "" {
 			wf.Filter(so.Filter)
 		}
+
 		log.Printf("return projects output")
 		wf.SendFeedback()
 	}()
 
 	log.Printf("get recent projects")
+
 	for _, item := range recentFolderItems() {
 		log.Printf("add item: %s", item.Name)
 		wf.NewItem(item.Name).
